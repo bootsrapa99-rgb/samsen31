@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { useState, useEffect, useRef } from "react";
 import {
-  collection, doc, onSnapshot, setDoc, deleteDoc, serverTimestamp
+  collection, doc, getDocs, onSnapshot, setDoc, deleteDoc, serverTimestamp
 } from "firebase/firestore";
 import {
   ref as storageRef, uploadBytes, getDownloadURL, deleteObject
@@ -222,32 +222,35 @@ export default function App() {
   const fileRef = useRef();
   const seeded  = useRef(false);
 
-  /* ── Real-time listener ── */
-  useEffect(() => {
-    const unsub = onSnapshot(collection(db, "members"), snap => {
-      const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      if (docs.length === 0 && !seeded.current) {
-        // ครั้งแรก: seed ข้อมูลตั้งต้น
-        seeded.current = true;
-        seedData();
-      } else {
-        docs.sort((a,b) => (a.order ?? 99) - (b.order ?? 99));
-        setMembers(docs);
-        setLoading(false);
-      }
+/* ── Real-time listener + seed ── */
+useEffect(() => {
+  let unsub = null;
+
+  async function init() {
+    const snap = await getDocs(collection(db, "members"));
+
+    if (snap.empty) {
+      await Promise.all(
+        SEED_MEMBERS.map((m, i) =>
+          setDoc(doc(db, "members", m.id), { ...m, order: i, updatedAt: serverTimestamp() })
+        )
+      );
+    }
+
+    unsub = onSnapshot(collection(db, "members"), s => {
+      const docs = s.docs.map(d => ({ id: d.id, ...d.data() }));
+      docs.sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+      setMembers(docs);
+      setLoading(false);
     }, err => {
       console.error(err);
       setLoading(false);
     });
-    return () => unsub();
-  }, []);
-
-  async function seedData() {
-    for (let i = 0; i < SEED_MEMBERS.length; i++) {
-      const m = SEED_MEMBERS[i];
-      await setDoc(doc(db, "members", m.id), { ...m, order: i, updatedAt: serverTimestamp() });
-    }
   }
+
+  init();
+  return () => { if (unsub) unsub(); };
+}, []);
 
   /* ── Toast ── */
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(""), 2800); }
