@@ -191,6 +191,41 @@ label{font-size:.66rem;color:${P.muted};text-transform:uppercase;letter-spacing:
 .upload-fill{height:100%;background:${P.pink1};border-radius:2px;transition:width .3s}
 
 .school-deco{position:fixed;bottom:-60px;right:-60px;width:200px;height:200px;opacity:.04;pointer-events:none;z-index:0}
+/* ── Responsive Mobile ──────────────────────────────────────────────────────── */
+.hamburger{display:none;background:none;border:none;padding:6px;cursor:pointer;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:${P.pink1};border-radius:2px;transition:.3s}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99}
+
+@media(max-width:768px){
+  .app{flex-direction:column}
+  .sb{position:fixed;left:-260px;top:0;bottom:0;z-index:100;transition:left .3s ease;width:260px}
+  .sb.open{left:0}
+  .sb-overlay{display:block}
+  .hamburger{display:flex}
+  .main{width:100%;min-height:100vh}
+  .topbar{padding:10px 14px}
+  .tb-title h2{font-size:.82rem}
+  .tb-title p{display:none}
+  .content{padding:14px}
+  .stats{grid-template-columns:repeat(2,1fr);gap:10px}
+  .mem-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .form-wrap{max-width:100%}
+  .mem-hd{flex-direction:column;align-items:center;text-align:center;gap:14px}
+  .hd-info{width:100%}
+  .pct-track{max-width:100%}
+  .sec-body.g2{grid-template-columns:1fr}
+  .save-bar{margin:0 -14px -14px;padding:10px 14px}
+  .group-banner img{max-height:180px}
+  .ov-stats{grid-template-columns:repeat(2,1fr)}
+  .tb-r .sync-dot{display:none}
+  .btn{padding:6px 12px;font-size:.72rem}
+}
+
+@media(max-width:400px){
+  .mem-grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+
 .group-banner{width:100%;border-radius:14px;overflow:hidden;margin-bottom:20px;box-shadow:0 4px 20px rgba(233,30,140,.12);position:relative;border:2px solid ${P.border}}
 .group-banner img{width:100%;display:block;object-fit:cover;max-height:280px}
 .group-banner-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(45,26,41,.75));padding:16px 20px 14px;color:#fff}
@@ -224,6 +259,7 @@ export default function App() {
   const [syncing,   setSyncing]   = useState(false);
   const [toast,     setToast]     = useState("");
   const [saveStatus,setSaveStatus]= useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const fileRef  = useRef();   // รูปปัจจุบัน
   const fileRef2 = useRef();   // รูปตอนนักเรียน
   const seeded  = useRef(false);
@@ -394,7 +430,8 @@ export default function App() {
     <div className="app">
 
       {/* ══ SIDEBAR ══ */}
-      <aside className="sb">
+      {sidebarOpen && <div className="sb-overlay" onClick={()=>setSidebarOpen(false)} />}
+      <aside className={`sb${sidebarOpen?" open":""}`}>
         <div className="sb-head">
           <div className="sb-logo">
             <img src={LOGO_SRC} alt="โลโก้" />
@@ -411,7 +448,7 @@ export default function App() {
         </div>
 
         <div className="sb-list">
-          <div className={`sb-ov${view==="overview"&&!selected?" active":""}`} onClick={()=>{setView("overview");setSelected(null)}}>
+          <div className={`sb-ov${view==="overview"&&!selected?" active":""}`} onClick={()=>{setView("overview");setSelected(null);setSidebarOpen(false)}}>
             <div className="sb-ov-icon">📊</div>
             <div>
               <div className="sb-ov-name">ภาพรวม</div>
@@ -423,7 +460,7 @@ export default function App() {
             const pct = completeness(m);
             const [g1,g2] = GRADIENTS[idx % GRADIENTS.length];
             return (
-              <div key={m.id} className={`sb-item${selected===m.id?" active":""}`} onClick={()=>openMember(m.id)}>
+              <div key={m.id} className={`sb-item${selected===m.id?" active":""}`} onClick={()=>{openMember(m.id);setSidebarOpen(false)}}>
                 <div className="avatar" style={{background:`linear-gradient(135deg,${g1},${g2})`}}>
                   {m.photoURL ? <img src={m.photoURL} alt={m.nickname} /> : (m.nickname?.[0]??"?")}
                 </div>
@@ -440,7 +477,7 @@ export default function App() {
           })}
         </div>
 
-        <button className="sb-add" onClick={openNew}>＋ เพิ่มเพื่อนใหม่</button>
+        <button className="sb-add" onClick={()=>{openNew();setSidebarOpen(false)}}>＋ เพิ่มเพื่อนใหม่</button>
         <div className="sb-foot">
           <img src={LOGO_SRC} style={{width:18,height:18,objectFit:"contain",verticalAlign:"middle",marginRight:4}} alt="" />
           samsenclass31@gmail.com
@@ -451,6 +488,9 @@ export default function App() {
       <div className="main">
         <div className="topbar">
           <div className="tb-l">
+            <button className="hamburger" onClick={()=>setSidebarOpen(o=>!o)} aria-label="เมนู">
+              <span/><span/><span/>
+            </button>
             <img src={LOGO_SRC} alt="logo" className="tb-logo" />
             <div className="tb-title">
               <h2>
@@ -465,7 +505,7 @@ export default function App() {
           </div>
           <div className="tb-r">
             <div className={`sync-dot${saving?" syncing":""}`} title={saving?"กำลังบันทึก...":"เชื่อมต่อ Firebase"} />
-            {view!=="overview" && <button className="btn btn-ghost btn-sm" onClick={()=>{setView("overview");setSelected(null)}}>← กลับ</button>}
+            {view!=="overview" && <button className="btn btn-ghost btn-sm" onClick={()=>{setView("overview");setSelected(null);setSidebarOpen(false)}}>← กลับ</button>}
             {(view==="form"||view==="new") && <button className="btn btn-pink btn-sm" onClick={saveForm} disabled={saving}>{saving?"⏳ กำลังบันทึก...":"💾 บันทึก"}</button>}
             {view==="overview" && <button className="btn btn-pink btn-sm" onClick={openNew}>＋ เพิ่มเพื่อน</button>}
           </div>
@@ -505,7 +545,7 @@ export default function App() {
                 const pct = completeness(m);
                 const [g1,g2] = GRADIENTS[idx % GRADIENTS.length];
                 return (
-                  <div key={m.id} className="mem-card" onClick={()=>openMember(m.id)}>
+                  <div key={m.id} className="mem-card" onClick={()=>{openMember(m.id);setSidebarOpen(false)}}>
                     <div className="mem-av" style={{background:`linear-gradient(135deg,${g1},${g2})`}}>
                       {m.photoURL ? <img src={m.photoURL} alt={m.nickname} /> : (m.nickname?.[0]??"?")}
                     </div>
@@ -621,7 +661,7 @@ export default function App() {
                 </div>
                 <div style={{display:"flex",gap:8}}>
                   {view==="form" && selected && <button className="btn btn-danger btn-sm" onClick={()=>deleteMember(selected)} disabled={saving}>🗑️ ลบ</button>}
-                  <button className="btn btn-ghost btn-sm" onClick={()=>{setView("overview");setSelected(null)}}>ยกเลิก</button>
+                  <button className="btn btn-ghost btn-sm" onClick={()=>{setView("overview");setSelected(null);setSidebarOpen(false)}}>ยกเลิก</button>
                   <button className="btn btn-pink" onClick={saveForm} disabled={saving}>{saving?"⏳ กำลังบันทึก...":"💾 บันทึกข้อมูล"}</button>
                 </div>
               </div>
