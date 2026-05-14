@@ -20,3 +20,4 @@ const firebaseConfig = {
 const app     = initializeApp(firebaseConfig);
 export const db      = getFirestore(app);   // Firestore — เก็บข้อมูลเพื่อน
 export const storage = getStorage(app);     // Storage   — เก็บรูปภาพ
+
