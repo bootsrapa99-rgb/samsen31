@@ -293,7 +293,7 @@ export default function App() {
 
   /* ── Delete member ── */
   async function deleteMember(id) {
-    if (!confirm("ลบข้อมูลเพื่อนคนนี้?")) return;
+   if (!window.confirm("ลบข้อมูลเพื่อนคนนี้?")) return;
     setSaving(true);
     try {
       await deleteDoc(doc(db, "members", id));
