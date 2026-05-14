@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 //  App.jsx  —  Dashboard สามเสน 31  |  Firebase Realtime + Vercel Deploy
 // ─────────────────────────────────────────────────────────────────────────────
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   collection, doc, onSnapshot, setDoc, deleteDoc, serverTimestamp
 } from "firebase/firestore";
