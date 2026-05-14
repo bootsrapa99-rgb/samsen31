@@ -303,26 +303,33 @@ useEffect(() => {
     setSaving(false);
   }
 
-  /* ── Upload photo to Firebase Storage ── */
-  async function handlePhoto(e) {
+ /* ── Upload photo — เก็บเป็น base64 ใน Firestore ── */
+  function handlePhoto(e) {
     const file = e.target.files[0];
     if (!file) return;
-    if (file.size > 5 * 1024 * 1024) { showToast("⚠️ ไฟล์ใหญ่เกิน 5MB"); return; }
+    if (file.size > 2 * 1024 * 1024) { showToast("⚠️ ไฟล์ใหญ่เกิน 2MB กรุณาบีบอัดรูปก่อน"); return; }
     setUploading(true);
-    setUploadPct(10);
-    try {
-      const path = `photos/${form.id}_${Date.now()}`;
-      const sRef = storageRef(storage, path);
-      setUploadPct(40);
-      await uploadBytes(sRef, file);
-      setUploadPct(80);
-      const url = await getDownloadURL(sRef);
-      setUploadPct(100);
-      setForm(f => ({ ...f, photoURL: url }));
-      showToast("📷 อัปโหลดรูปสำเร็จ");
-    } catch(e) { showToast("❌ อัปโหลดไม่สำเร็จ: " + e.message); }
-    setUploading(false);
-    setUploadPct(0);
+    setUploadPct(30);
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 400;
+        const scale = Math.min(MAX / img.width, MAX / img.height, 1);
+        const canvas = document.createElement("canvas");
+        canvas.width  = Math.round(img.width  * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+        const base64 = canvas.toDataURL("image/jpeg", 0.75);
+        setUploadPct(90);
+        setForm(f => ({ ...f, photoURL: base64 }));
+        showToast("📷 อัปโหลดรูปสำเร็จ");
+        setUploading(false);
+        setUploadPct(0);
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   function setF(k,v) { setForm(f => ({...f, [k]: v})); }
