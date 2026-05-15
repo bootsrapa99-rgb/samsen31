@@ -17,21 +17,21 @@ const GROUP_PHOTO = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYE
 
 /* ─── ข้อมูลตั้งต้น (seed ครั้งแรก) ────────────────────────────────────────── */
 const SEED_MEMBERS = [
-  { id:"jaa",    nickname:"จ๋า",     fullname:"บุศราภา",           stuId:"18194", phone:"0846780898", email:"jafood@hotmail.com", career:"อาจารย์ ม.ธรรมศาสตร์", address:"ประชานิเวศน์ 2",    edu:"จุฬาฯ Food Tech + ปริญญาเอก Texas A&M", work:"อาจารย์ ม.ธรรมศาสตร์", family:"ลูกชาย 2 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"goong",  nickname:"กุ้ง",    fullname:"ยุวคุณ",             stuId:"18234", phone:"",           email:"",                  career:"เจ้าของธุรกิจ Smart Chef", address:"พุทธมณฑล สาย 2", edu:"ม.เกษตรฯ Food Science", work:"เจ้าของบริษัทส่งออกผักสูญญากาศ", family:"ลูก 1 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"bung",   nickname:"บุ๊ง",    fullname:"ศุลีกร",             stuId:"18202", phone:"0894510321", email:"",                  career:"ทันตแพทย์ รพ.พระนั่งเกล้า", address:"แจ้งวัฒนะ",       edu:"ทันตแพทย์ จุฬาฯ + เฉพาะทางจัดฟัน", work:"ทันตแพทย์ รพ.พระนั่งเกล้า", family:"โสด", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"phueng", nickname:"ผึ้ง",    fullname:"ภมรมาศ",             stuId:"18204", phone:"0895125281", email:"",                  career:"รังสีแพทย์ รพ.มหาชัย", address:"มหาชัย สมุทรสาคร", edu:"แพทย์ จุฬาฯ + รังสีวิทยา", work:"รังสีแพทย์ รพ.มหาชัย", family:"สามีทหารเรือ ลูกสาว 1 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"suang",  nickname:"ซวง",    fullname:"วีระชัย",             stuId:"18198", phone:"0819164538", email:"",                  career:"ที่ปรึกษาเทคโนโลยีและพลังงาน", address:"ท่าอิฐ นนทบุรี", edu:"วิศวะ ลาดกระบัง + MBA เกษตรฯ", work:"Early Retire จากไทยคม 28 ปี", family:"แต่งงาน ไม่มีลูก", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"jong",   nickname:"จ๋อง",   fullname:"สมประสงค์ ศรีชัย",   stuId:"18199", phone:"0979916554", email:"",                  career:"ที่ปรึกษาการเงินและพลังงาน", address:"นนทบุรี / บางแค", edu:"วิศวเคมี จุฬาฯ + ปริญญาเอก UK", work:"อดีต CFO น้ำมันปาล์ม → ที่ปรึกษา", family:"ลูก 3 คน (แพทย์ทุกคน)", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"ad",     nickname:"แอ๊ด",   fullname:"พงษ์ศักดิ์",         stuId:"18218", phone:"0928295498", email:"",                  career:"เจ้าของ Cheesy Fried Snacks", address:"รามอินทรา-วัชรพล", edu:"วิศวะ IE เกษตรฯ", work:"Seagate → Panasonic → Cheesy Fried Snacks", family:"ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"tong",   nickname:"ต้อง",   fullname:"จักกลิน",             stuId:"18216", phone:"0816144397", email:"",                  career:"Internal Audit MQDC (DTGO)", address:"รังสิต คลอง 4", edu:"บัญชี + MBA ธรรมศาสตร์", work:"ปูนซีเมนต์ไทย → Internal Audit MQDC", family:"แต่งงาน ไม่มีบุตร", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"kai",    nickname:"ไก่",    fullname:"ปรีชา",               stuId:"18197", phone:"0896103344", email:"",                  career:"MD ที่ปรึกษาการลงทุน DAOL", address:"ซ.พหลโยธิน 11", edu:"บัญชี ธรรมศาสตร์ + MBA จุฬาฯ", work:"UOB 17 ปี → TTB → MD DAOL", family:"โสด", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"vo",     nickname:"โว่",    fullname:"ศรัณย์",              stuId:"18210", phone:"0818388540", email:"",                  career:"Carbon Lead", address:"สาธุประดิษฐ์", edu:"Control Eng ลาดกระบัง", work:"ไทยออยล์ → ที่ปรึกษาพลังงาน → Carbon Lead", family:"ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"tua",    nickname:"ตั้ว",   fullname:"อัคคมณฑ์",            stuId:"18221", phone:"0841362000", email:"",                  career:"PMO Management (อดีต Cisco)", address:"สุขุมวิท 101/1", edu:"Computer Eng ลาดกระบัง", work:"Cisco 10 ปี → วิจัย Digital Twin → PMO", family:"ลูก 1 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"toom",   nickname:"ตุ่ม",   fullname:"ปฏิภาณ",              stuId:"18223", phone:"0812699178", email:"",                  career:"วิสัญญีแพทย์ / อาจารย์ ศิริราช", address:"ย่านศิริราช", edu:"แพทย์ศิริราช + วิสัญญีวิทยา", work:"อาจารย์ + วิสัญญีแพทย์ ศิริราช", family:"ภรรยาทันตแพทย์ ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"piak",   nickname:"เปี๊ยก", fullname:"วลัยทิพย์",           stuId:"",      phone:"0813116312", email:"",                  career:"เจ้าของร้านขายยา อ.ตะพานหิน", address:"ตะพานหิน พิจิตร", edu:"เภสัชศาสตร์ ม.มหิดล", work:"รพ.พระรามเกล้า → ผู้แทนยา → ร้านขายยา", family:"ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"puk",    nickname:"ปุ๊ก",   fullname:"สุนทรี",              stuId:"18268", phone:"0818489125", email:"",                  career:"อาชีพอิสระ", address:"คลองหลวง คลอง 3", edu:"สังคมสงเคราะห์ ธรรมศาสตร์", work:"Mineba → อาชีพอิสระ", family:"โสด (เลี้ยงน้องหมา)", note:"", photoURL:"", studentPhotoURL:"" },
-  { id:"pao",    nickname:"เปา",    fullname:"สุกัญญา",             stuId:"18225", phone:"0945514011", email:"",                  career:"โฮมสเตย์นางเลิ้ง + ที่ปรึกษาคลังยา", address:"นางเลิ้ง", edu:"เภสัชศาสตร์ จุฬาฯ + โท มหิดล", work:"อดีต Director บำรุงราษฎร์ → โฮมสเตย์", family:"โสด", note:"", photoURL:"", studentPhotoURL:"" },
+  { id:"jaa",    nickname:"จ๋า",     fullname:"บุศราภา",           stuId:"18194", phone:"0846780898", email:"jafood@hotmail.com", career:"อาจารย์ ม.ธรรมศาสตร์", address:"ประชานิเวศน์ 2",    edu:"จุฬาฯ Food Tech + ปริญญาเอก Texas A&M", work:"อาจารย์ ม.ธรรมศาสตร์", family:"ลูกชาย 2 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"goong",  nickname:"กุ้ง",    fullname:"ยุวคุณ",             stuId:"18234", phone:"",           email:"",                  career:"เจ้าของธุรกิจ Smart Chef", address:"พุทธมณฑล สาย 2", edu:"ม.เกษตรฯ Food Science", work:"เจ้าของบริษัทส่งออกผักสูญญากาศ", family:"ลูก 1 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"bung",   nickname:"บุ๊ง",    fullname:"ศุลีกร",             stuId:"18202", phone:"0894510321", email:"",                  career:"ทันตแพทย์ รพ.พระนั่งเกล้า", address:"แจ้งวัฒนะ",       edu:"ทันตแพทย์ จุฬาฯ + เฉพาะทางจัดฟัน", work:"ทันตแพทย์ รพ.พระนั่งเกล้า", family:"โสด", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"phueng", nickname:"ผึ้ง",    fullname:"ภมรมาศ",             stuId:"18204", phone:"0895125281", email:"",                  career:"รังสีแพทย์ รพ.มหาชัย", address:"มหาชัย สมุทรสาคร", edu:"แพทย์ จุฬาฯ + รังสีวิทยา", work:"รังสีแพทย์ รพ.มหาชัย", family:"สามีทหารเรือ ลูกสาว 1 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"suang",  nickname:"ซวง",    fullname:"วีระชัย",             stuId:"18198", phone:"0819164538", email:"",                  career:"ที่ปรึกษาเทคโนโลยีและพลังงาน", address:"ท่าอิฐ นนทบุรี", edu:"วิศวะ ลาดกระบัง + MBA เกษตรฯ", work:"Early Retire จากไทยคม 28 ปี", family:"แต่งงาน ไม่มีลูก", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"jong",   nickname:"จ๋อง",   fullname:"สมประสงค์ ศรีชัย",   stuId:"18199", phone:"0979916554", email:"",                  career:"ที่ปรึกษาการเงินและพลังงาน", address:"นนทบุรี / บางแค", edu:"วิศวเคมี จุฬาฯ + ปริญญาเอก UK", work:"อดีต CFO น้ำมันปาล์ม → ที่ปรึกษา", family:"ลูก 3 คน (แพทย์ทุกคน)", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"ad",     nickname:"แอ๊ด",   fullname:"พงษ์ศักดิ์",         stuId:"18218", phone:"0928295498", email:"",                  career:"เจ้าของ Cheesy Fried Snacks", address:"รามอินทรา-วัชรพล", edu:"วิศวะ IE เกษตรฯ", work:"Seagate → Panasonic → Cheesy Fried Snacks", family:"ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"tong",   nickname:"ต้อง",   fullname:"จักกลิน",             stuId:"18216", phone:"0816144397", email:"",                  career:"Internal Audit MQDC (DTGO)", address:"รังสิต คลอง 4", edu:"บัญชี + MBA ธรรมศาสตร์", work:"ปูนซีเมนต์ไทย → Internal Audit MQDC", family:"แต่งงาน ไม่มีบุตร", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"kai",    nickname:"ไก่",    fullname:"ปรีชา",               stuId:"18197", phone:"0896103344", email:"",                  career:"MD ที่ปรึกษาการลงทุน DAOL", address:"ซ.พหลโยธิน 11", edu:"บัญชี ธรรมศาสตร์ + MBA จุฬาฯ", work:"UOB 17 ปี → TTB → MD DAOL", family:"โสด", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"vo",     nickname:"โว่",    fullname:"ศรัณย์",              stuId:"18210", phone:"0818388540", email:"",                  career:"Carbon Lead", address:"สาธุประดิษฐ์", edu:"Control Eng ลาดกระบัง", work:"ไทยออยล์ → ที่ปรึกษาพลังงาน → Carbon Lead", family:"ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"tua",    nickname:"ตั้ว",   fullname:"อัคคมณฑ์",            stuId:"18221", phone:"0841362000", email:"",                  career:"PMO Management (อดีต Cisco)", address:"สุขุมวิท 101/1", edu:"Computer Eng ลาดกระบัง", work:"Cisco 10 ปี → วิจัย Digital Twin → PMO", family:"ลูก 1 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"toom",   nickname:"ตุ่ม",   fullname:"ปฏิภาณ",              stuId:"18223", phone:"0812699178", email:"",                  career:"วิสัญญีแพทย์ / อาจารย์ ศิริราช", address:"ย่านศิริราช", edu:"แพทย์ศิริราช + วิสัญญีวิทยา", work:"อาจารย์ + วิสัญญีแพทย์ ศิริราช", family:"ภรรยาทันตแพทย์ ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"piak",   nickname:"เปี๊ยก", fullname:"วลัยทิพย์",           stuId:"",      phone:"0813116312", email:"",                  career:"เจ้าของร้านขายยา อ.ตะพานหิน", address:"ตะพานหิน พิจิตร", edu:"เภสัชศาสตร์ ม.มหิดล", work:"รพ.พระรามเกล้า → ผู้แทนยา → ร้านขายยา", family:"ลูก 2 คน", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"puk",    nickname:"ปุ๊ก",   fullname:"สุนทรี",              stuId:"18268", phone:"0818489125", email:"",                  career:"อาชีพอิสระ", address:"คลองหลวง คลอง 3", edu:"สังคมสงเคราะห์ ธรรมศาสตร์", work:"Mineba → อาชีพอิสระ", family:"โสด (เลี้ยงน้องหมา)", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
+  { id:"pao",    nickname:"เปา",    fullname:"สุกัญญา",             stuId:"18225", phone:"0945514011", email:"",                  career:"โฮมสเตย์นางเลิ้ง + ที่ปรึกษาคลังยา", address:"นางเลิ้ง", edu:"เภสัชศาสตร์ จุฬาฯ + โท มหิดล", work:"อดีต Director บำรุงราษฎร์ → โฮมสเตย์", family:"โสด", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"" },
 ];
 
 /* ─── Theme ──────────────────────────────────────────────────────────────────── */
@@ -231,6 +231,35 @@ label{font-size:.66rem;color:${P.muted};text-transform:uppercase;letter-spacing:
 .group-banner-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(45,26,41,.75));padding:16px 20px 14px;color:#fff}
 .group-banner-caption h3{font-family:'Noto Serif Thai',serif;font-size:1rem;font-weight:700;margin-bottom:2px}
 .group-banner-caption p{font-size:.72rem;opacity:.85}
+
+/* ── Birthday Banner ───────────────────────────────────────────────────────── */
+.bday-banner{background:linear-gradient(135deg,#fff0f8,#fff8fe);border:1.5px solid #f7bfdc;border-radius:16px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:0 4px 16px rgba(233,30,140,.08);transition:.2s}
+.bday-banner:hover{border-color:#e91e8c;box-shadow:0 8px 24px rgba(233,30,140,.14);transform:translateY(-1px)}
+.bday-banner-icon{font-size:1.7rem;flex-shrink:0;animation:bdayBounce 1.4s ease-in-out infinite}
+@keyframes bdayBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bday-banner-text{flex:1;min-width:0}
+.bday-banner-text h4{font-size:.86rem;color:#8a1657;font-weight:700;margin-bottom:2px}
+.bday-banner-text p{font-size:.72rem;color:#8c6b7d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bday-banner-badge{background:linear-gradient(90deg,#e91e8c,#f06bb0);color:#fff;border-radius:999px;padding:4px 10px;font-size:.68rem;font-weight:700;flex-shrink:0}
+.bday-modal-backdrop{position:fixed;inset:0;background:rgba(45,26,41,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.bday-modal{background:#fff;border-radius:22px;padding:26px 22px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(45,26,41,.25);max-height:82vh;overflow:auto;animation:slideUp .3s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.bday-modal-hd{text-align:center;margin-bottom:16px}
+.bday-modal-hd .cake{font-size:2.8rem;display:block;margin-bottom:4px}
+.bday-modal-hd h2{font-family:'Noto Serif Thai',serif;font-size:1.15rem;color:#8a1657;margin-bottom:4px}
+.bday-modal-hd p{font-size:.74rem;color:#8c6b7d}
+.bday-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.bday-item{display:flex;align-items:center;gap:12px;background:#fff7fb;border:1px solid #f7bfdc;border-radius:14px;padding:11px 12px}
+.bday-item.today{background:linear-gradient(135deg,#fff0f8,#fff);border-color:#e91e8c;box-shadow:0 3px 14px rgba(233,30,140,.13)}
+.bday-av{width:42px;height:42px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0}
+.bday-av img{width:100%;height:100%;object-fit:cover}
+.bday-info{flex:1;min-width:0}
+.bday-name{font-size:.86rem;color:#8a1657;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bday-detail{font-size:.7rem;color:#8c6b7d;margin-top:2px}
+.bday-age{font-size:.68rem;background:#fce4f1;color:#8a1657;padding:3px 8px;border-radius:999px;font-weight:700;flex-shrink:0}
+.bday-close{width:100%;padding:10px;background:linear-gradient(90deg,#e91e8c,#c4178a);color:#fff;border:none;border-radius:12px;font-size:.84rem;font-weight:700;cursor:pointer;font-family:'Kanit',sans-serif}
+
 `;
 
 /* ─── Helpers ────────────────────────────────────────────────────────────────── */
@@ -260,6 +289,8 @@ export default function App() {
   const [toast,     setToast]     = useState("");
   const [saveStatus,setSaveStatus]= useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [bdayModal, setBdayModal] = useState(false);
+  const [bdayList, setBdayList] = useState([]);
   const fileRef  = useRef();   // รูปปัจจุบัน
   const fileRef2 = useRef();   // รูปตอนนักเรียน
   const seeded  = useRef(false);
@@ -297,6 +328,35 @@ export default function App() {
     return () => { if (unsub) unsub(); };
   }, []);
 
+
+  /* ── Birthday banner: วันนี้ + ภายใน 30 วัน ── */
+  useEffect(() => {
+    if (!members.length) { setBdayList([]); return; }
+
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const upcoming = members
+      .filter(m => m.birthday)
+      .map(m => {
+        const [y, mo, d] = String(m.birthday).split("-").map(Number);
+        if (!mo || !d) return null;
+
+        let next = new Date(today.getFullYear(), mo - 1, d);
+        if (next < today) next = new Date(today.getFullYear() + 1, mo - 1, d);
+
+        const diff = Math.round((next - today) / (1000 * 60 * 60 * 24));
+        const isToday = diff === 0;
+        const age = y ? next.getFullYear() - y : "";
+        return { ...m, bdayMonth: mo, bdayDay: d, diff, isToday, age };
+      })
+      .filter(Boolean)
+      .filter(m => m.diff <= 30)
+      .sort((a, b) => a.diff - b.diff || (a.nickname || "").localeCompare(b.nickname || "", "th"));
+
+    setBdayList(upcoming);
+  }, [members]);
+
   /* ── Toast ── */
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(""), 2800); }
 
@@ -312,7 +372,7 @@ export default function App() {
   /* ── New member ── */
   function openNew() {
     const nid = `m_${Date.now()}`;
-    setForm({ id:nid, nickname:"", fullname:"", stuId:"", phone:"", email:"", career:"", address:"", edu:"", work:"", family:"", note:"", photoURL:"", order: members.length });
+    setForm({ id:nid, nickname:"", fullname:"", stuId:"", phone:"", email:"", career:"", address:"", edu:"", work:"", family:"", note:"", photoURL:"", studentPhotoURL:"", birthday:"", facebook:"", order: members.length });
     setSelected(null);
     setView("new");
   }
@@ -430,6 +490,41 @@ export default function App() {
     <div className="app">
 
       {/* ══ SIDEBAR ══ */}
+
+      {/* ══ Birthday modal ══ */}
+      {bdayModal && (
+        <div className="bday-modal-backdrop" onClick={()=>setBdayModal(false)}>
+          <div className="bday-modal" onClick={e=>e.stopPropagation()}>
+            <div className="bday-modal-hd">
+              <span className="cake">🎂</span>
+              <h2>แจ้งเตือนวันเกิดเพื่อนสามเสน 31</h2>
+              <p>วันนี้และใน 30 วันข้างหน้า</p>
+            </div>
+            <div className="bday-list">
+              {bdayList.map((m,i) => {
+                const [g1,g2] = GRADIENTS[i % GRADIENTS.length];
+                return (
+                  <div key={m.id} className={`bday-item${m.isToday ? " today" : ""}`}>
+                    <div className="bday-av" style={{background:`linear-gradient(135deg,${g1},${g2})`}}>
+                      {m.photoURL ? <img src={m.photoURL} alt={m.nickname} /> : (m.nickname?.[0] || "?")}
+                    </div>
+                    <div className="bday-info">
+                      <div className="bday-name">{m.isToday ? "🎉 " : ""}{m.nickname || "ไม่ระบุชื่อ"}{m.fullname ? ` (${m.fullname})` : ""}</div>
+                      <div className="bday-detail">
+                        {m.isToday ? "วันนี้เป็นวันเกิด" : `อีก ${m.diff} วัน — ${m.bdayDay}/${m.bdayMonth}`}
+                        {m.facebook && <span> · Facebook: {m.facebook}</span>}
+                      </div>
+                    </div>
+                    {m.age !== "" && <div className="bday-age">{m.age} ปี</div>}
+                  </div>
+                );
+              })}
+            </div>
+            <button className="bday-close" onClick={()=>setBdayModal(false)}>ปิด</button>
+          </div>
+        </div>
+      )}
+
       {sidebarOpen && <div className="sb-overlay" onClick={()=>setSidebarOpen(false)} />}
       <aside className={`sb${sidebarOpen?" open":""}`}>
         <div className="sb-head">
@@ -623,6 +718,11 @@ export default function App() {
                   {k:"email",   lbl:"อีเมล",          ph:"example@email.com"},
                   {k:"address", lbl:"ที่อยู่ปัจจุบัน", ph:"ย่าน / ซอย / จังหวัด", full:true},
                 ]},
+
+                { icon:"🎂", title:"วันเกิด & Social", cls:"g2", fields:[
+                  {k:"birthday", lbl:"วันเกิด", ph:"", type:"date"},
+                  {k:"facebook", lbl:"Facebook", ph:"ชื่อโปรไฟล์ หรือ URL Facebook"},
+                ]},
                 { icon:"🎓", title:"ประวัติการเรียน", cls:"g1", fields:[
                   {k:"edu", lbl:"การศึกษา (จากสามเสนจนถึงปัจจุบัน)", ph:"เช่น เรียนสามเสนถึง ม.6 จบคณะวิทยาศาสตร์ จุฬาฯ ...", ta:true},
                 ]},
@@ -644,7 +744,9 @@ export default function App() {
                         <label>{f.lbl}</label>
                         {f.ta
                           ? <textarea value={form[f.k]||""} onChange={e=>setF(f.k,e.target.value)} placeholder={f.ph} />
-                          : <input value={form[f.k]||""} onChange={e=>setF(f.k,e.target.value)} placeholder={f.ph} />
+                          : f.type === "date"
+                            ? <input type="date" value={form[f.k]||""} onChange={e=>setF(f.k,e.target.value)} />
+                            : <input value={form[f.k]||""} onChange={e=>setF(f.k,e.target.value)} placeholder={f.ph} />
                         }
                         {f.ta && <div className="char-ct">{(form[f.k]||"").length} ตัวอักษร</div>}
                       </div>
