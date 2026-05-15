@@ -610,6 +610,23 @@ export default function App() {
 
           {/* ── Overview ── */}
           {view==="overview" && (<>
+            {/* ── Birthday Banner ── */}
+            {bdayList.length > 0 && (
+              <div className="bday-banner" onClick={()=>setBdayModal(true)}>
+                <div className="bday-banner-icon">🎂</div>
+                <div className="bday-banner-text">
+                  <h4>แจ้งเตือนวันเกิดใน 30 วันข้างหน้า</h4>
+                  <p>
+                    {bdayList.some(m=>m.isToday)
+                      ? `🎉 วันนี้: ${bdayList.filter(m=>m.isToday).map(m=>m.nickname || m.fullname || "ไม่ระบุชื่อ").join(", ")}`
+                      : `ใกล้สุด: ${bdayList[0]?.nickname || bdayList[0]?.fullname || "ไม่ระบุชื่อ"} — อีก ${bdayList[0]?.diff} วัน`
+                    }
+                  </p>
+                </div>
+                <div className="bday-banner-badge">{bdayList.length} คน</div>
+              </div>
+            )}
+
             {/* ── Banner รูปกลุ่ม ── */}
             <div className="group-banner">
               <img src={GROUP_PHOTO} alt="กลุ่มเพื่อนสามเสน 31" />
